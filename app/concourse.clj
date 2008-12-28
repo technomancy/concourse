@@ -2,18 +2,12 @@
 
 (ns concourse
   (:use (compojure html http validation control)
-        (concourse models views)))
-
-;; Controllers
-
-(defn ensure-login [args]
-  ;; TODO: write
-  args)
+        (concourse models views session)))
 
 ;; Routes
 
 (defservlet concourse-servlet
-  (GET "/"               (ensure-login (dashboard-view)))
+  (GET "/"               (ensure-login session (dashboard-view)))
 
 ;;;   (GET "/new"            (ensure-login (new-gathering-form))) ;; TODO
 ;;;   (POST "/new"           (ensure-login (new-gathering))) ;; TODO
@@ -21,8 +15,8 @@
 ;;;   (GET "/edit/:id"       (ensure-login (edit-gathering-form))) ;; TODO
 ;;;   (PUT "/edit/:id"       (ensure-login (edit-gathering))) ;; TODO
 
-;;;   (GET "/invitation/:id" (ensure-login (edit-invitation-form))) ;; TODO
-;;;   (PUT "/invitation/:id" (ensure-login (edit-invitation))) ;; TODO
+  (GET "/invitation/:id" (ensure-login session (edit-invitation-form)))
+  (PUT "/invitation/:id" (ensure-login session (edit-invitation-view)))
 
 ;;;   (GET "/login"          (login-form)) ;; TODO
 ;;;   (POST "/login"         (login)) ;; TODO
@@ -30,8 +24,8 @@
 ;;;   (POST "/logout"        (ensure-login (logout))) ;; TODO
 ;;;   (GET "/signup"         (signup-form)) ;; TODO
 ;;;   (POST "/signup"        (signup)) ;; TODO
+  (GET "/static/*"
+       (serve-file "public" (route :*)))
 
 ;;;   (ANY "*"               (page-not-found))
   )
-
-;; TODO: nicer way to specify which pages require login

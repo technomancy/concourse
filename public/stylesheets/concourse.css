@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 #header {
-  background: url(/images/shine.gif) repeat-x 0 0;
+  background: url(/static/images/shine.gif) repeat-x 0 0;
   padding: 1em 10%;
   border-bottom: solid 6px #3f8591;
   background-color: #50a9b9;
@@ -98,8 +98,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: .25em;
   font-size: .8em;
   line-height: 1.3em;
-}
-#navbar ul {
 }
 #navbar li {
   float: left;

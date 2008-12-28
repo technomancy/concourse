@@ -1,23 +1,31 @@
-(ns concourse)
+(ns concourse.session
+  (:use (compojure http)
+        (concourse models)))
+
 ;; Session functions
 
-(defmacro ensure-login
-  "Run the body if the user is logged in, otherwise send them to the login form."
-  [& body]
-  ;; TODO: need to pass in session here and bind it dynamically?
-  `(if (logged-in?)
-     ~@body
-     (redirect-to "/login")))
+(def session)
 
-(defn logged-in? "Is the user logged in?" []
-  (not (not (current-user))))
-
-(defn current-user "Returns the current user." []
-  ;; TODO: save this as a thread-local var
-  (authenticate (:email @session) (:password @session)))
-
-(defn authenticate "Try to find the user with the given email/password."
+(defn authenticate "Try to find the person with the given email/password."
   [email password]
-  (first (filter (fn [user] (and (= (:email user) email)
-                                (= (:password user) password)))
-                 *users*)))
+  (some #(and (= (:email %) email) (= (:password %) password))
+        @*people*))
+
+(defn current-person "Returns the current person." []
+  (first @*people*))
+;; TODO: don't just mock this out.
+;;;   ;; TODO: save this as a thread-local var
+;;;   (authenticate (:email @session) (:password @session)))
+
+(defn logged-in? "Is the person logged in?" []
+  (not (not (current-person))))
+
+(defmacro ensure-login
+  "Run the body if the person is logged in, otherwise send them to the login form."
+  [this-session & body]
+  ;; TODO: need to pass in session here and bind it dynamically?
+  `(binding [session ~this-session]
+     (if (logged-in?)
+       ~@body
+       (redirect-to "/login"))))
+

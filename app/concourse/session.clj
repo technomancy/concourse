@@ -1,10 +1,10 @@
 (ns concourse.session
-  (:use (compojure http)
-        (concourse models)))
+  (:use (compojure http)))
 
 ;; Session functions
 
 (def session)
+(def *people* (ref []))
 
 (defn authenticate "Try to find the person with the given email/password."
   [email password]
@@ -28,4 +28,3 @@
      (if (logged-in?)
        ~@body
        (redirect-to "/login"))))
-

@@ -21,10 +21,10 @@
       [:p.length (str (:length gathering)
                       (if (= 1 (:length gathering)) " hour" " hours")
                       " long")]
-      ;; [:div {:id "right-bar"}
+      ;; [:div#right-bar
       ;;  [:p "These people have been invited:"]
       ;;  [:ul (map #([:li [:link_to %1 (str "mailto: " %1)]])
       ;;            @(:attendees gathering))]]
       [:form {:method "PUT"}
-       [:div {:id "week-container"}
+       [:div#week-container
         (map week-table (weeks-for gathering))]])))

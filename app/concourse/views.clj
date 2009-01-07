@@ -18,19 +18,19 @@
      [:script {:src "/static/javascripts/jquery.js" :type "text/javascript"}]
      [:link {:rel "stylesheet" :href "/static/stylesheets/concourse.css" :type "text/css"}]]
     [:body
-     [:div {:id "header"} [:h1 [:a {:href "/"} "Concourse"]]]
-     [:div.clearfix {:id "wrapper"}
+     [:div#header [:h1 [:a {:href "/"} "Concourse"]]]
+     [:div#wrapper.clearfix
       [:div.navbar
        (if (logged-in?)
-         [:div {:id "loggedinas"}
+         [:div#loggedinas
           "Logged in as " [:strong (:email (current-person))] " | "
           [:a {:href "/logout"} "log out"]])]
 
-      [:div {:id "content"}
+      [:div#content
        ;; TODO: notices
        body]]
 
-     [:div {:id "footer"} [:a {:href "http://technomancy.us"} "By Phil Hagelberg"]]]]))
+     [:div#footer [:a {:href "http://technomancy.us"} "By Phil Hagelberg"]]]]))
 
 (defn slug [obj]
   (java.net.URLEncoder/encode (:name obj)))

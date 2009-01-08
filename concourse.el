@@ -4,6 +4,9 @@
 ;; this Emacs instance; even if you have since disconnected. Not sure
 ;; how to "reset" the connection.
 
+(ignore-errors
+  (zenburn) (envy "20"))
+
 (setq concourse-dir (file-name-directory
                      (or (buffer-file-name) load-file-name))
       swank-clojure-jar-path (concat concourse-dir "/jars/clojure.jar")
@@ -22,3 +25,5 @@
 (add-hook 'slime-connected-hook 'concourse-launch)
 
 (slime)
+
+(find-file (concat concourse-dir "/app/concourse.clj"))

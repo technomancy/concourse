@@ -1,7 +1,7 @@
 (add-classpath "file:///home/phil/src/concourse3/app/")
 
 (ns concourse
-  (:require concourse)
+  (:require :reload-all concourse)
   (:require [compojure.jetty :as jetty]))
 
 ;; Define a new HTTP server on port 8080

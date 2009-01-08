@@ -1,8 +1,8 @@
 (ns concourse.views.dashboard
-  (:use (concourse models views session)
-        (concourse.views gathering)))
+  (:use [concourse views gatherings])
+  (:require [concourse.views gathering]))
 
 (defn dashboard-view []
   (layout "Your Gatherings"
           [:h4 "Your Gatherings"]
-          [:ul (map link-to-gathering @*gatherings*)]))
+          [:ul (map concourse.views.gathering/link-to-gathering @*gatherings*)]))

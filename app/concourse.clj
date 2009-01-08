@@ -1,3 +1,9 @@
+;;; concourse.clj
+;; by Phil Hagelberg
+;;
+;; This is a port of a Rails application (http://technomancy.us/47) to
+;; Compojure. To launch it, eval concourse.el from Emacs.
+
 (add-classpath "file:///home/phil/src/concourse3/jars/clojure-contrib.jar")
 (add-classpath "file:///home/phil/src/concourse3/jars/compojure.jar")
 (add-classpath "file:///home/phil/src/concourse3/jars/jetty-6.1.14.jar")
@@ -6,7 +12,7 @@
 
 (ns concourse
   (:use (compojure html http validation control)
-        (concourse models views session)
+        (concourse session)
         (concourse.views dashboard gathering)))
 
 ;; Routes

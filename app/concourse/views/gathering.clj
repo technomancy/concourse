@@ -1,6 +1,6 @@
 (ns concourse.views.gathering
   (:use (compojure html)
-        (concourse views session models)))
+        (concourse views session gatherings people)))
 
 (defn link-to-gathering [gathering]
   [:li (link-to (str "/gathering/" (slug gathering)) (:name gathering))])
@@ -11,6 +11,8 @@
 
 (defn week-table [week]
   [:table ])
+
+;; TODO: should be using deftmpl here?
 
 (defn gathering-view [name]
   (let [gathering (find-gathering name)]

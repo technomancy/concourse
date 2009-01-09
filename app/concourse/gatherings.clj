@@ -1,9 +1,10 @@
 (ns concourse.gatherings
-  (:use (concourse util)))
+  (:use (concourse times)))
 
 (defstruct gathering :name :description
            :organizer :attendees
-           :length :chosen-time :earliest :latest)
+           :length :chosen-time
+           :earliest-day :earliest-hour :latest-day :latest-hour)
 
 ;; Mocked out for now
 (def *gatherings* (ref []))

@@ -178,7 +178,7 @@ div.error, .errorExplanation {
 }
 
 /* meeting show */
-#meeting-description { 
+#description { 
   width: 380px;
   margin: 1em;
   background-color: #eee;                       
@@ -195,9 +195,10 @@ table {
   border-collapse: collapse;
   padding: 0;
 }
+
 th, td {
   height: 20px;
-  padding: 2px 3px;
+  padding: 2px 4px;
   white-space: nowrap;
 }
 

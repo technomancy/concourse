@@ -1,6 +1,6 @@
 (ns concourse.views
   (:use (compojure html http)
-        (concourse models session)))
+        (concourse session)))
 
 ;; How to fit this into the ns invocation above?
 (require 'compojure.html.page_functions)
@@ -15,8 +15,8 @@
    [:html
     [:head
      [:title title]
-     [:script {:src "/static/javascripts/jquery.js" :type "text/javascript"}]
-     [:link {:rel "stylesheet" :href "/static/stylesheets/concourse.css" :type "text/css"}]]
+     (include-js "/static/javascripts/jquery.js")
+     (include-css "/static/stylesheets/concourse.css")]
     [:body
      [:div#header [:h1 [:a {:href "/"} "Concourse"]]]
      [:div#wrapper.clearfix
@@ -33,4 +33,4 @@
      [:div#footer [:a {:href "http://technomancy.us"} "By Phil Hagelberg"]]]]))
 
 (defn slug [obj]
-  (java.net.URLEncoder/encode (:name obj)))
+  (url-encode (:name obj)))

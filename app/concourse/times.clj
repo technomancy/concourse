@@ -33,11 +33,25 @@ dysfunctional ones... that's new to me."
   "getDay doesn't really make me think of weekdays."
   (.getDay d))
 
+(defn next-date [d]
+  (make-date (get-year d) (get-month d) (+ 1 (get-date d))))
+
 ;;; Concourse-specific stuff.
 
-(defn weeks-for [gathering]
-  "For now, mocked out to return a single week."
-  [(map #(make-date 2009 1 %) (range 4 11))])
+(defn weeks-for
+  ([gathering] ;; Split out into three-arg version
+     (weeks-for (:earliest-day gathering) (:latest-day gathering) [[]]))
+
+  ([date latest-day weeks]
+  (if (.before date latest-day)
+    weeks ;; terminal condition of recursion
+    (if (= 0 (get-day-of-week date))
+      ;; Start a new week
+      (recur date latest-day (conj weeks []))
+      ;; Push a day on to the last week
+      (recur (next-date date)
+             latest-day
+             (conj (butlast weeks) (conj (last weeks) date)))))))
 
 (defn times-for [gathering]
   (second (first (filter #(= (:email (current-person) %)) @(:attendees gathering)))))

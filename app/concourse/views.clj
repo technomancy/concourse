@@ -33,4 +33,4 @@
      [:div#footer [:a {:href "http://technomancy.us"} "By Phil Hagelberg"]]]]))
 
 (defn slug [obj]
-  (url-encode (:name obj)))
+  (:name obj))

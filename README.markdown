@@ -5,6 +5,8 @@ don't know the schedule of everyone who can attend, or even who can
 attend in the first place. It's based on an (application written for
 Railsday 2006)[http://technomancy.us/47].
 
+To see the original in action, see http://concourse.technomancy.us
+
 # The Concept
 
 OK, so you've got this meeting, right? A bunch of people have to come
